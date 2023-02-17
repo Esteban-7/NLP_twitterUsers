@@ -52,7 +52,7 @@ def get_timeline(user):
         clean_tweet = clean_tweets(tweet["text"])
         tweets.append(clean_tweet)
     
-    tweets = pd.DataFrame(tweets)
-    tweets.columns = ["tweet"]
+    tweets_df = pd.DataFrame(tweets)
+    tweets_df.columns = ["tweet"]
     
-    return tweets
+    return {"tweets":tweets, "tweets_df":tweets_df}

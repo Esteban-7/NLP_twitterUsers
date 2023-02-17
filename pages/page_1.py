@@ -38,17 +38,17 @@ layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Label("The quick recap of normal tweets:"),
+            html.Label("A quick recap of normal tweets:"),
             dcc.Markdown(id="normal_recap",children=[])
         ], width= 4),
 
         dbc.Col([
-            html.Label("The quick recap of offensive tweets:"),
+            html.Label("A quick recap of offensive tweets:"),
             dcc.Markdown(id="offensive_recap",children=[])
         ], width= 4),
 
         dbc.Col([
-            html.Label("The quick recap of hate tweets:"),
+            html.Label("A quick recap of hate tweets:"),
             dcc.Markdown(id="hate_recap",children=[])
         ], width= 4),
 

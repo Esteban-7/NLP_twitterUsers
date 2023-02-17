@@ -42,7 +42,8 @@ layout = html.Div([
     Later, we use Twitter API to search for the posts that a user has made in the last months. We classify all the tweets by the user according to the predictions of the model. 
     With this, we report the percentage of estimated hate speech in a single user.
 
-    
+    Later, we use a public trained model from Huggin face to summarize the tweets from the different cathegories. We use the model philschmid/bart-large-cnn-samsum (can be found here: https://huggingface.co/philschmid/bart-large-cnn-samsum).
+    This model takes input as text and summarizes in a few lines the most important parts of it. 
     """),
 
     html.H4("The code", style={'text-align': 'left'}),

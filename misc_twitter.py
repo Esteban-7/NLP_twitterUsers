@@ -1,4 +1,5 @@
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from transformers import pipeline
 import re
 
 def print_score(clf, X_train, y_train, X_test, y_test, train=True):
@@ -29,3 +30,30 @@ def clean_tweets(tweet):
     words = re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z_À-ÿ \t])|(\w+:\/\/\S+)","",words)
     words = re.sub("RT ","",words)
     return words
+
+
+def tweets_list_to_text(tweets_list):
+     #get a list of all tweets, join it in a long string. Divide the string such that the summarizer can read it later. 
+    text = '.\n'.join(tweets_list)
+    text = re.sub("\n","",text)
+
+    substring_length = 4000
+
+    # Use a list comprehension to create a list of substrings
+    substrings = [text[i:i+substring_length] for i in range(0, len(text), substring_length)]
+    
+    return substrings
+
+
+def summarize_tweets(substrings):
+    #gets a list of substrings, summarizes all the text to create one large summary.
+
+    summarizer = pipeline("summarization", model="philschmid/bart-large-cnn-samsum")
+    total_summary = ""
+    for text in substrings:
+        summary = summarizer(substrings[0]) #summarize the text
+        summary = summary[0]["summary_text"] 
+        total_summary = total_summary + summary
+
+    return total_summary
+        
