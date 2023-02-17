@@ -1,0 +1,8 @@
+data/credentials.py
+data/train_y.csv
+data/train_x.csv
+data/test_y.csv
+data/test_x.csv
+.ipynb_checkpoints/
+__pycache__/
+data/__pycache__/
