@@ -24,7 +24,7 @@ def get_timeline(user):
     tweets = []
 
     start = 0
-    for iteration in range(0,2):
+    for iteration in range(0,6):
         time.sleep(2)
 
         if start ==0:

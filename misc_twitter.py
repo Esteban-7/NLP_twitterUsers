@@ -1,6 +1,9 @@
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from transformers import pipeline
+from joblib import load
 import re
+import pandas as pd
+
 
 def print_score(clf, X_train, y_train, X_test, y_test, train=True):
     if train:
@@ -57,3 +60,18 @@ def summarize_tweets(substrings):
 
     return total_summary
         
+
+def classify_tweets(tweets_df):   
+    vectorizer = load("data/vectorizer.joblib")
+    
+    tweets_transformed =  list(tweets_df["tweet"])
+    tweets_transformed =  vectorizer.transform(tweets_transformed).toarray()
+    
+    model = load("data/xgb_model.joblib")
+    predictions = model.predict(tweets_transformed)
+    
+    tweets_df["classification"] = predictions
+    
+    return tweets_df
+
+
